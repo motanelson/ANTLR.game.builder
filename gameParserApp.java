@@ -12,7 +12,7 @@ public class gameParserApp {
         System.out.println("OBJECTS can be create 'CASTLE x,y' 'HOUSE x,y' 'MAN x,y' emply promp exit\n");
         
         while (true) {
-            System.out.print("> ");
+            System.out.print("\n> ");
             String input = scanner.nextLine();
             
             if (input.trim().isEmpty()) {
@@ -33,15 +33,16 @@ public class gameParserApp {
                 ParseTree tree = parser.program();  // Altere "program" para a regra de entrada correta
 
                 // Exibe a árvore sintática
-                //System.out.println("----------------------------------- ");
+                System.out.println("----------------------------------- ");
 
                 // Exibe os tokens da linha de entrada
-                System.out.println("Tokens:");
+                System.out.println("");
                 tokens.fill();
                 for (Token token : tokens.getTokens()) {
-                    if (token.getText().indexOf("CASTLE")>-1)System.out.printf("CREATING A CASTLE \n");
-                    if (token.getText().indexOf("HOUSE")>-1)System.out.printf("CREATING A HOUSE \n");
-                    if (token.getText().indexOf("MAN")>-1)System.out.printf("CREATING A MAN \n");
+                    if (token.getText().indexOf("CASTLE")>-1)System.out.printf("CREATING A CASTLE ");
+                    else if (token.getText().indexOf("HOUSE")>-1)System.out.printf("CREATING A HOUSE ");
+                         else if (token.getText().indexOf("MAN")>-1)System.out.printf("CREATING A MAN ");
+                              else System.out.printf(" %s ",token.getText());
                 }
 
             } catch (Exception e) {
