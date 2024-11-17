@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class gameParserApp {
     public static void main(String[] args) {
         boolean errors =false;
+        String s="";
         Scanner scanner = new Scanner(System.in);
         
         System.out.println("OBJECTS can be create 'CASTLE x,y' 'HOUSE x,y' 'MAN x,y' emply promp exit\n");
@@ -41,26 +42,26 @@ public class gameParserApp {
                 tokens.fill();
                 errors =false;
                 for (Token token : tokens.getTokens()) {
-                    System.out.printf(" %s \n",token.getText());
-                    if (token.getText().indexOf("line")>-1){
+                    s=token.getText().toString();
+                    if (s.indexOf("line")>-1){
                         System.out.printf("error\n");
                         errors=true;
                         break;
                     }else{
                         if(!errors){
-                            if (token.getText().indexOf("CASTLE")>-1){
+                            if (s.indexOf("CASTLE")>-1){
                                 System.out.printf("CREATING A CASTLE ");
                             }else{
-                                if (token.getText().indexOf("HOUSE")>-1){
+                                if (s.indexOf("HOUSE")>-1){
                                     System.out.printf("CREATING A HOUSE ");
                                 }else{ 
-                                    if (token.getText().indexOf("MAN")>-1){
+                                    if (s.indexOf("MAN")>-1){
                                          System.out.printf("CREATING A MAN ");
                                     }else{
-                                       if (token.getText().indexOf("<EOF>")>-1){
-                                            System.out.printf("\n",token.getText());
+                                       if (s.indexOf("<EOF>")>-1){
+                                            System.out.printf("\n");
                                        }else{
-                                             System.out.printf(" %s ",token.getText());
+                                             System.out.printf(" %s ",s);
                                              
                                        }
                                   }    
