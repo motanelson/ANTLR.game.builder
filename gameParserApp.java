@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class gameParserApp {
     public static void main(String[] args) {
+        boolean errors =false;
         Scanner scanner = new Scanner(System.in);
         
         System.out.println("OBJECTS can be create 'CASTLE x,y' 'HOUSE x,y' 'MAN x,y' emply promp exit\n");
@@ -38,11 +39,34 @@ public class gameParserApp {
                 // Exibe os tokens da linha de entrada
                 System.out.println("");
                 tokens.fill();
+                errors =false;
                 for (Token token : tokens.getTokens()) {
-                    if (token.getText().indexOf("CASTLE")>-1)System.out.printf("CREATING A CASTLE ");
-                    else if (token.getText().indexOf("HOUSE")>-1)System.out.printf("CREATING A HOUSE ");
-                         else if (token.getText().indexOf("MAN")>-1)System.out.printf("CREATING A MAN ");
-                              else System.out.printf(" %s ",token.getText());
+                    System.out.printf(" %s \n",token.getText());
+                    if (token.getText().indexOf("line")>-1){
+                        System.out.printf("error\n");
+                        errors=true;
+                        break;
+                    }else{
+                        if(!errors){
+                            if (token.getText().indexOf("CASTLE")>-1){
+                                System.out.printf("CREATING A CASTLE ");
+                            }else{
+                                if (token.getText().indexOf("HOUSE")>-1){
+                                    System.out.printf("CREATING A HOUSE ");
+                                }else{ 
+                                    if (token.getText().indexOf("MAN")>-1){
+                                         System.out.printf("CREATING A MAN ");
+                                    }else{
+                                       if (token.getText().indexOf("<EOF>")>-1){
+                                            System.out.printf("\n",token.getText());
+                                       }else{
+                                             System.out.printf(" %s ",token.getText());
+                                             
+                                       }
+                                  }    
+                           }   }      
+                       }
+                    }
                 }
 
             } catch (Exception e) {
