@@ -9,14 +9,14 @@ public class gameParserApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        System.out.println("Insira uma linha para análise (ou pressione Enter para sair):");
+        System.out.println("OBJECTS can be create 'CASTLE x,y' 'HOUSE x,y' 'MAN x,y' emply promp exit\n");
         
         while (true) {
             System.out.print("> ");
             String input = scanner.nextLine();
             
             if (input.trim().isEmpty()) {
-                System.out.println("Encerrando o programa.");
+                System.out.println("end game.");
                 break;
             }
 
@@ -33,13 +33,15 @@ public class gameParserApp {
                 ParseTree tree = parser.program();  // Altere "program" para a regra de entrada correta
 
                 // Exibe a árvore sintática
-                System.out.println("Árvore Sintática: " + tree.toStringTree(parser));
+                //System.out.println("----------------------------------- ");
 
                 // Exibe os tokens da linha de entrada
                 System.out.println("Tokens:");
                 tokens.fill();
                 for (Token token : tokens.getTokens()) {
-                    System.out.printf("Tipo: %s, Valor: %s%n", gameLexer.VOCABULARY.getSymbolicName(token.getType()), token.getText());
+                    if (token.getText().indexOf("CASTLE")>-1)System.out.printf("CREATING A CASTLE \n");
+                    if (token.getText().indexOf("HOUSE")>-1)System.out.printf("CREATING A HOUSE \n");
+                    if (token.getText().indexOf("MAN")>-1)System.out.printf("CREATING A MAN \n");
                 }
 
             } catch (Exception e) {
